@@ -1,96 +1,88 @@
 body {
     font-family: "Poppins", sans-serif;
-    background: #0d0d0d;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+    background: #faf7f7;
+    color: #0f0f0f;
     margin: 0;
 }
 
-.chat-container {
-    width: 380px;
-    background: #1b1b1b;
-    border-radius: 14px;
-    padding: 20px;
-    box-shadow: 0 0 25px rgba(0, 150, 255, 0.3);
-}
-
-header {
+/* NAVBAR */
+.nav {
+    background: #f8f7f7;
+    padding: 15px 25px;
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    gap: 12px;
-    margin-bottom: 15px;
+    box-shadow: 0 0 10px #000;
 }
 
-.avatar {
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    border: 2px solid #0af;
-}
-
-#messages {
-    height: 300px;
-    overflow-y: auto;
-    background: #111;
-    padding: 12px;
-    border-radius: 10px;
-    margin-bottom: 10px;
-}
-
-.message {
-    background: #222;
-    padding: 8px 12px;
-    margin: 8px 0;
-    width: fit-content;
-    max-width: 75%;
-    border-radius: 10px;
-    animation: fadeIn 0.3s ease;
-}
-
-.message.you {
-    background: #0066ff;
-    margin-left: auto;
-    border-radius: 10px 10px 0 10px;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(8px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-#typing {
-    height: 20px;
-    font-size: 14px;
+.nav a {
     color: #0af;
-    margin-bottom: 4px;
+    margin-left: 15px;
+    text-decoration: none;
 }
 
-.input-area {
+.hero {
+    text-align: center;
+    padding: 40px 10px;
+    background: linear-gradient(135deg, #000, #181818);
+}
+
+.section-title {
+    margin-left: 20px;
+}
+
+/* CARDS */
+.card-container {
     display: flex;
-    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin: 20px;
 }
 
-input {
-    flex: 1;
-    padding: 10px;
-    border-radius: 8px;
-    border: none;
-    background: #222;
+.card {
+    width: 300px;
+    background: #1c1c1c;
+    border-radius: 10px;
+    text-decoration: none;
     color: white;
+    padding: 15px;
+    transition: 0.25s;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
 }
 
-button {
-    padding: 10px 15px;
-    border-radius: 8px;
-    background: #0af;
-    color: #000;
-    font-weight: bold;
-    border: none;
-    cursor: pointer;
+.card:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 20px #0af;
 }
 
-button:hover {
-    background: #08c;
+.card img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+footer {
+    text-align: center;
+    padding: 15px;
+    margin-top: 50px;
+    color: #aaa;
+}
+
+/* ARTICLE PAGE */
+.article-container {
+    width: 90%;
+    max-width: 800px;
+    margin: auto;
+    padding: 25px;
+}
+
+.article-img {
+    width: 100%;
+    border-radius: 10px;
+    margin: 20px 0;
+}
+
+.back {
+    color: #0af;
+    text-decoration: none;
 }
