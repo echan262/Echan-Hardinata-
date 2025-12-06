@@ -5,12 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Artikel</title>
 
-<!-- Tailwind CDN -->
 <script src="https://cdn.tailwindcss.com"></script>
-
-<!-- Custom CSS -->
 <link rel="stylesheet" href="style.css">
-
 </head>
 <body class="bg-light text-dark transition-colors duration-300">
 
@@ -21,16 +17,11 @@
 </header>
 
 <main class="max-w-5xl mx-auto px-4 py-8">
-  <div class="article-container space-y-6">
-
-    <nav id="breadcrumb" class="text-sm text-slate-500 dark:text-slate-400"></nav>
+  <div id="article-container" class="space-y-6">
 
     <h1 id="title" class="text-3xl font-extrabold"></h1>
-
     <div id="tags" class="flex flex-wrap gap-2"></div>
-
     <img id="thumb" class="w-full h-64 object-cover rounded-lg shadow-md" loading="lazy">
-
     <div id="content" class="prose dark:prose-invert max-w-full"></div>
 
     <h2 class="text-2xl font-bold mt-6">Sub Bab</h2>
@@ -39,84 +30,81 @@
     <h2 class="text-2xl font-bold mt-6">File Download</h2>
     <div id="files" class="flex flex-wrap gap-3 mt-2"></div>
 
-    <button id="shareBtn" class="px-3 py-1 bg-gray-200 dark:bg-gray-700 rounded hover:bg-gray-300 dark:hover:bg-gray-600">Copy Link</button>
-
   </div>
 </main>
 
-<script src="articles.js"></script>
 <script>
 document.addEventListener("DOMContentLoaded", () => {
-    const url = new URLSearchParams(window.location.search);
-    const id = url.get("id");
-
-    const article = ARTICLES.find(a => a.id === id);
-
-    if (!article) {
-        document.body.innerHTML = "<h2 class='text-center mt-20 text-xl'>Artikel tidak ditemukan</h2>";
+    const id = new URLSearchParams(window.location.search).get("id");
+    if(!id){
+        document.getElementById("article-container").innerHTML =
+            "<h2 class='text-center mt-20 text-xl'>Artikel tidak ditemukan</h2>";
         return;
     }
 
-    // Breadcrumb
-    const breadcrumb = document.getElementById('breadcrumb');
-    breadcrumb.innerHTML = `<a href='index.html' class='hover:underline'>Home</a> &rarr; <span>Artikel</span> &rarr; <span>${article.title}</span>`;
+    // Load JS artikel dinamis
+    const script = document.createElement("script");
+    script.src = `articles/${id}.js`;
+    script.onload = () => renderArticle();
+    script.onerror = () => {
+        document.getElementById("article-container").innerHTML =
+            "<h2 class='text-center mt-20 text-xl'>Artikel tidak ditemukan</h2>";
+    };
+    document.body.appendChild(script);
 
-    // Judul
-    document.getElementById("title").innerText = article.title;
+    function renderArticle(){
+        if(!ARTICLE){
+            document.getElementById("article-container").innerHTML =
+                "<h2 class='text-center mt-20 text-xl'>Artikel tidak ditemukan</h2>";
+            return;
+        }
 
-    // Tags
-    const tagsEl = document.getElementById('tags');
-    if(article.tags && article.tags.length > 0){
-        article.tags.forEach(tag => {
-            const span = document.createElement('span');
-            span.className = 'px-2 py-1 bg-indigo-100 text-indigo-700 rounded text-sm dark:bg-indigo-900 dark:text-indigo-200';
-            span.textContent = `#${tag}`;
-            tagsEl.appendChild(span);
-        });
-    }
+        document.getElementById("title").innerText = ARTICLE.title;
 
-    // Thumbnail
-    document.getElementById("thumb").src = article.thumbnail;
-
-    // Konten
-    document.getElementById("content").innerHTML = article.content;
-
-    // Sub-bab
-    const subContainer = document.getElementById("sub");
-    article.sub.forEach(s => {
-        const subDiv = document.createElement('div');
-        subDiv.className = "sub-section fade-in p-4 border-l-4 border-indigo-500 bg-indigo-50 dark:bg-gray-800 rounded-md";
-        subDiv.innerHTML = `<h3 class="font-semibold mb-2">${s.subtitle}</h3>${s.body}`;
-        subContainer.appendChild(subDiv);
-    });
-
-    // Files
-    const fileBox = document.getElementById("files");
-    if (article.files.length > 0) {
-        article.files.forEach(f => {
-            const a = document.createElement('a');
-            a.href = f.url;
-            a.download = f.name;
-            a.className = "px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition";
-            a.textContent = f.name;
-            fileBox.appendChild(a);
-        });
-    }
-
-    // Share Button
-    document.getElementById('shareBtn').addEventListener('click', () => {
-        navigator.clipboard.writeText(window.location.href);
-        alert('Link artikel disalin!');
-    });
-
-    // Fade-in animation observer
-    document.querySelectorAll('.fade-in').forEach(el => {
-        new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.classList.add('is-visible');
+        // Tags
+        const tagsEl = document.getElementById("tags");
+        tagsEl.innerHTML = "";
+        if(ARTICLE.tags && ARTICLE.tags.length>0){
+            ARTICLE.tags.forEach(tag=>{
+                const span = document.createElement("span");
+                span.className = "px-2 py-1 bg-indigo-100 text-indigo-700 rounded text-sm dark:bg-indigo-900 dark:text-indigo-200";
+                span.textContent = `#${tag}`;
+                tagsEl.appendChild(span);
             });
-        }, { threshold: 0.1 }).observe(el);
-    });
+        }
+
+        // Thumbnail
+        document.getElementById("thumb").src = ARTICLE.thumbnail;
+
+        // Content
+        document.getElementById("content").innerHTML = ARTICLE.content;
+
+        // Sub Bab
+        const subContainer = document.getElementById("sub");
+        subContainer.innerHTML = "";
+        if(ARTICLE.sub && ARTICLE.sub.length>0){
+            ARTICLE.sub.forEach(s=>{
+                const div = document.createElement("div");
+                div.className = "sub-section p-4 border-l-4 border-indigo-500 bg-indigo-50 dark:bg-gray-800 rounded-md";
+                div.innerHTML = `<h3 class="font-semibold mb-2">${s.subtitle}</h3>${s.body}`;
+                subContainer.appendChild(div);
+            });
+        }
+
+        // File download
+        const fileBox = document.getElementById("files");
+        fileBox.innerHTML = "";
+        if(ARTICLE.files && ARTICLE.files.length>0){
+            ARTICLE.files.forEach(f=>{
+                const a = document.createElement("a");
+                a.href = f.url;
+                a.download = f.name;
+                a.className = "px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition";
+                a.textContent = f.name;
+                fileBox.appendChild(a);
+            });
+        }
+    }
 });
 </script>
 
