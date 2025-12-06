@@ -5,8 +5,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Artikel</title>
 
+<!-- Tailwind CDN -->
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="stylesheet" href="style.css">
+
+<style>
+  /* Gallery transition */
+  #gallery img {
+    transition: opacity 0.5s ease-in-out;
+  }
+  .touch-swipe {
+    touch-action: pan-y;
+  }
+</style>
 </head>
 <body class="bg-light text-dark transition-colors duration-300">
 
@@ -21,8 +32,23 @@
 
     <h1 id="title" class="text-3xl font-extrabold"></h1>
     <div id="tags" class="flex flex-wrap gap-2"></div>
-    <img id="thumb" class="w-full h-64 object-cover rounded-lg shadow-md" loading="lazy">
-    <div id="content" class="prose dark:prose-invert max-w-full"></div>
+
+    <!-- Thumbnail -->
+    <img id="thumb" class="w-full h-64 object-cover rounded-lg shadow-md mt-4" loading="lazy">
+
+    <!-- Gallery interactive -->
+    <div id="gallery-container" class="relative w-full mt-4 rounded-lg overflow-hidden shadow-md touch-swipe">
+      <div id="gallery" class="relative w-full h-64"></div>
+
+      <!-- Prev/Next -->
+      <button id="prevBtn" class="absolute top-1/2 left-2 transform -translate-y-1/2 bg-gray-700 text-white rounded-full p-2 hover:bg-gray-800 transition z-20">&#10094;</button>
+      <button id="nextBtn" class="absolute top-1/2 right-2 transform -translate-y-1/2 bg-gray-700 text-white rounded-full p-2 hover:bg-gray-800 transition z-20">&#10095;</button>
+
+      <!-- Dots indicator -->
+      <div id="dots" class="absolute bottom-2 left-1/2 transform -translate-x-1/2 flex gap-2"></div>
+    </div>
+
+    <div id="content" class="prose dark:prose-invert max-w-full mt-4"></div>
 
     <h2 class="text-2xl font-bold mt-6">Sub Bab</h2>
     <div id="sub" class="space-y-6"></div>
@@ -102,6 +128,66 @@ document.addEventListener("DOMContentLoaded", () => {
                 a.className = "px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition";
                 a.textContent = f.name;
                 fileBox.appendChild(a);
+            });
+        }
+
+        // Interactive gallery
+        const galleryEl = document.getElementById("gallery");
+        const dotsEl = document.getElementById("dots");
+        galleryEl.innerHTML = "";
+        dotsEl.innerHTML = "";
+
+        if(ARTICLE.gallery && ARTICLE.gallery.length>0){
+            let current = 0;
+            ARTICLE.gallery.forEach((imgSrc, idx)=>{
+                const img = document.createElement("img");
+                img.src = imgSrc;
+                img.className = "absolute top-0 left-0 w-full h-64 object-cover";
+                img.style.opacity = idx===0 ? "1" : "0";
+                galleryEl.appendChild(img);
+
+                // dot
+                const dot = document.createElement("span");
+                dot.className = idx===0 ? "w-3 h-3 rounded-full bg-white" : "w-3 h-3 rounded-full bg-gray-400";
+                dot.dataset.index = idx;
+                dot.addEventListener("click", ()=>showSlide(idx));
+                dotsEl.appendChild(dot);
+            });
+
+            const images = galleryEl.querySelectorAll("img");
+            const dots = dotsEl.querySelectorAll("span");
+
+            function showSlide(idx){
+                images[current].style.opacity = "0";
+                dots[current].className = "w-3 h-3 rounded-full bg-gray-400";
+                current = idx;
+                images[current].style.opacity = "1";
+                dots[current].className = "w-3 h-3 rounded-full bg-white";
+            }
+
+            document.getElementById("prevBtn").addEventListener("click", ()=>{
+                let idx = (current-1+images.length)%images.length;
+                showSlide(idx);
+            });
+            document.getElementById("nextBtn").addEventListener("click", ()=>{
+                let idx = (current+1)%images.length;
+                showSlide(idx);
+            });
+
+            // Swipe support
+            let startX = 0;
+            galleryEl.addEventListener("touchstart", e=>{
+                startX = e.touches[0].clientX;
+            });
+            galleryEl.addEventListener("touchend", e=>{
+                let endX = e.changedTouches[0].clientX;
+                if(endX - startX > 50){
+                    // swipe right
+                    document.getElementById("prevBtn").click();
+                } else if(startX - endX > 50){
+                    // swipe left
+                    document.getElementById("nextBtn").click();
+                }
             });
         }
     }
