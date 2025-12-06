@@ -1,23 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Real-Time Chat</title>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <div class="container">
-        <h2>Real-Time Chat</h2>
+    <!-- LOGIN SCREEN -->
+    <div id="login-screen">
+        <div class="login-box">
+            <h2>Enter your username</h2>
+            <input id="usernameInput" type="text" placeholder="Your name">
+            <button onclick="startChat()">Join Chat</button>
+        </div>
+    </div>
+
+    <!-- CHAT SCREEN -->
+    <div class="container" id="chat-screen" style="display:none;">
+        <header>
+            <h2>💬 Real-Time Chat</h2>
+        </header>
 
         <div id="messages"></div>
 
-        <input id="msg" placeholder="Type a message..." autocomplete="off" />
-        <button onclick="sendMessage()">Send</button>
+        <div id="typing"></div>
+
+        <div class="input-area">
+            <input id="msg" type="text" placeholder="Type a message..." oninput="typing()">
+            <button onclick="sendMsg()">Send</button>
+        </div>
     </div>
 
     <script src="/socket.io/socket.io.js"></script>
     <script src="script.js"></script>
+
 </body>
 </html>

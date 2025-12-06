@@ -1,40 +1,74 @@
-body {
-    font-family: Arial, sans-serif;
-    background: #111;
-    color: white;
+/* LOGIN SCREEN */
+#login-screen {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.7);
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    margin: 0;
+    backdrop-filter: blur(8px);
 }
 
-.container {
-    width: 350px;
-    padding: 20px;
-    background: #222;
-    border-radius: 10px;
+.login-box {
+    background: rgba(255,255,255,0.1);
+    padding: 25px;
+    width: 300px;
+    border-radius: 15px;
+    text-align: center;
+    color: white;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.4);
 }
 
-#messages {
-    height: 250px;
-    overflow-y: auto;
-    background: #000;
+.login-box input {
+    width: 100%;
     padding: 10px;
-    border-radius: 5px;
-    margin-bottom: 10px;
-}
-
-#msg {
-    width: 70%;
-    padding: 8px;
-}
-
-button {
-    width: 25%;
-    padding: 8px;
-    background: #0af;
+    margin: 10px 0;
+    border-radius: 8px;
     border: none;
-    border-radius: 5px;
+    outline: none;
+}
+
+.login-box button {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    background: #0af;
+    color: #000;
+    font-weight: 600;
     cursor: pointer;
+}
+
+/* CHAT AVATAR BUBBLE */
+.msg-block {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    animation: fadeIn 0.3s ease;
+}
+
+.msg-block.me {
+    flex-direction: row-reverse;
+}
+
+.avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+}
+
+/* typing */
+#typing {
+    height: 20px;
+    font-size: 14px;
+    color: #ccc;
+    margin: 5px;
+    font-style: italic;
+}
+
+/* bubble animation */
+@keyframes fadeIn {
+    from {opacity: 0; transform: translateY(8px);}
+    to {opacity: 1; transform: translateY(0);}
 }
