@@ -1,0 +1,40 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #111;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    width: 350px;
+    padding: 20px;
+    background: #222;
+    border-radius: 10px;
+}
+
+#messages {
+    height: 250px;
+    overflow-y: auto;
+    background: #000;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+#msg {
+    width: 70%;
+    padding: 8px;
+}
+
+button {
+    width: 25%;
+    padding: 8px;
+    background: #0af;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
