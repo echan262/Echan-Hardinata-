@@ -1,13 +1,16 @@
-const socket = io();
+let socket = io();
 
-// kirim pesan
-document.getElementById("sendBtn").onclick = () => {
-    const msg = messageInput.value;
-    socket.emit("message", msg);
-};
+function sendMessage() {
+    let msg = document.getElementById("msg").value;
 
-// tampilkan pesan
+    if (msg.trim() !== "") {
+        socket.emit("message", msg);
+        document.getElementById("msg").value = "";
+    }
+}
+
 socket.on("message", (msg) => {
-    const chatBox = document.getElementById("messages");
-    chatBox.innerHTML += `<div>${msg}</div>`;
+    let box = document.getElementById("messages");
+    box.innerHTML += `<div>${msg}</div>`;
+    box.scrollTop = box.scrollHeight;
 });
