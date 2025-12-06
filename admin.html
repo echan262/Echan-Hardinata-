@@ -1,0 +1,69 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Admin - Create Article</title>
+  <style>
+    body{font-family:Arial;background:#0f0f12;color:#fff;padding:20px}
+    .box{max-width:700px;margin:auto;background:#111;padding:20px;border-radius:8px}
+    input,textarea{width:100%;padding:10px;margin:8px 0;border-radius:6px;border:1px solid #333;background:#0a0a0a;color:#fff}
+    label{font-weight:600}
+    .row{display:flex;gap:10px}
+    button{padding:10px 16px;background:#0af;border:none;color:#000;font-weight:700;border-radius:8px;cursor:pointer}
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h2>Create Article</h2>
+    <form id="frm" enctype="multipart/form-data">
+      <label>Title</label>
+      <input name="title" required>
+
+      <label>Content (HTML allowed)</label>
+      <textarea name="content" rows="8" placeholder="Write article content..."></textarea>
+
+      <div class="row">
+        <div style="flex:1">
+          <label>Thumbnail (image)</label>
+          <input type="file" name="thumbnail" accept="image/*">
+        </div>
+        <div style="flex:1">
+          <label>Attachments (multiple)</label>
+          <input type="file" name="attachments" multiple>
+        </div>
+      </div>
+
+      <div style="margin-top:12px">
+        <button type="submit">Publish</button>
+      </div>
+    </form>
+
+    <div id="msg" style="margin-top:12px"></div>
+  </div>
+
+  <script>
+    const form = document.getElementById("frm");
+    const msg = document.getElementById("msg");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const fd = new FormData(form);
+
+      msg.innerText = "Uploading...";
+      try {
+        const res = await fetch("/api/articles", { method: "POST", body: fd });
+        const j = await res.json();
+        if (j.ok) {
+          msg.innerText = "Published successfully!";
+          form.reset();
+        } else {
+          msg.innerText = "Error: " + (j.error || "unknown");
+        }
+      } catch (err) {
+        msg.innerText = "Upload failed: " + err.message;
+      }
+    });
+  </script>
+</body>
+</html>

@@ -61,6 +61,26 @@
 <footer>
     © 2025 • Echan Hardinata
 </footer>
+<script>
+async function loadList(){
+  const res = await fetch('/api/articles');
+  const arr = await res.json();
+  const container = document.querySelector('.card-container');
+  container.innerHTML = '';
+  arr.forEach(a => {
+    const el = document.createElement('a');
+    el.className = 'card';
+    el.href = `article.html?id=${a.id}`;
+    el.innerHTML = `
+      <img src="${a.thumbnail || 'img/placeholder.jpg'}">
+      <h3>${a.title}</h3>
+      <p>${(a.content||'').replace(/<[^>]*>?/gm,'').slice(0,120)}...</p>
+    `;
+    container.appendChild(el);
+  });
+}
+loadList();
+</script>
 
 <script src="script.js"></script>
 </body>
