@@ -1,87 +1,64 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Echan Hardinata • Tech Blog & Projects</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Echan Hardinata • Tech Blog & Projects</title>
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Custom Modular CSS -->
+  <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="bg-light text-dark transition-colors duration-300">
 
-<header class="nav">
-    <h1>⚡ Echan Hardinata</h1>
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="#projects">Projects</a>
-        <a href="#articles">Articles</a>
-    </nav>
-</header>
+  <!-- Header -->
+  <header id="header" class="sticky top-0 z-30 bg-white dark:bg-gray-900 border-b border-light dark:border-dark shadow-md">
+    <div class="max-w-5xl mx-auto px-4 py-3 flex justify-between items-center">
+      <div class="flex items-center gap-3">
+        <a href="#" class="flex items-center gap-3">
+          <div class="logo bg-gradient-to-br from-indigo-500 to-pink-500 text-white font-bold rounded-full w-10 h-10 flex items-center justify-center">EH</div>
+          <span class="hidden sm:block font-semibold text-lg">Echan Hardinata</span>
+        </a>
+      </div>
 
-<section class="hero">
-    <h2>Welcome to My Tech Blog</h2>
-    <p>Arduino • Electronics • Programming • IoT • Tutorials</p>
-</section>
+      <nav class="hidden md:flex gap-4">
+        <a href="#" class="nav-link">Home</a>
+        <a href="#projects" class="nav-link">Projects</a>
+        <a href="#articles" class="nav-link">Articles</a>
+      </nav>
 
-<h2 class="section-title" id="articles">Latest Articles</h2>
+      <div class="flex items-center gap-3">
+        <input id="search" type="search" placeholder="Search..." class="search-input hidden sm:block">
+        <button id="themeToggle" class="btn-theme">🌙</button>
+      </div>
+    </div>
+  </header>
 
-<div class="card-container">
+  <!-- Hero Section -->
+  <section class="hero max-w-5xl mx-auto px-4 py-8 text-center">
+    <h1 class="text-3xl md:text-4xl font-extrabold mb-2">Selamat datang di Tech Blog & Projects</h1>
+    <p class="text-slate-600 dark:text-slate-300 mb-4">Arduino • Electronics • Programming • IoT • Tutorials</p>
+  </section>
 
-    <a class="card" href="article.html?id=arduino-ultrasonic">
-        <img src="img/thumbnail1.jpg">
-        <h3>Arduino Ultrasonic: Cara Kerja & Contoh Project</h3>
-        <p>Belajar membuat sensor jarak otomatis dengan HC-SR04.</p>
-    </a>
+  <!-- Articles Section -->
+  <section id="articles" class="max-w-5xl mx-auto px-4 py-8">
+    <h2 class="section-title">Artikel Terbaru</h2>
+    <div id="cards" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-4"></div>
+  </section>
 
-    <a class="card" href="article.html?id=rfid-mfrc522">
-        <img src="img/thumbnail2.jpg">
-        <h3>RFID MFRC522: Menambah Fitur Magic Card</h3>
-        <p>Tutorial lengkap cloning, dump, dan write sektor.</p>
-    </a>
+  <!-- Projects Section -->
+  <section id="projects" class="max-w-5xl mx-auto px-4 py-8">
+    <h2 class="section-title">Proyek Unggulan</h2>
+    <div id="projectsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-4"></div>
+  </section>
 
-</div>
+  <!-- Footer -->
+  <footer class="text-center py-6 text-sm text-slate-500 dark:text-slate-400">© 2025 • Echan Hardinata</footer>
 
-<h2 class="section-title" id="projects">Featured Projects</h2>
+  <!-- Script -->
+  <script src="script.js"></script>
 
-<div class="card-container">
-
-    <a class="card" href="article.html?id=automatic-irrigation">
-        <img src="img/thumbnail3.jpg">
-        <h3>Automatic Watering System</h3>
-        <p>Proyek IoT penyiraman & pemupukan otomatis.</p>
-    </a>
-
-    <a class="card" href="article.html?id=nfc-pn532">
-        <img src="img/thumbnail4.jpg">
-        <h3>Simulasi NFC PN532</h3>
-        <p>Simulasi kartu, SID, dump, dan cloning.</p>
-    </a>
-
-</div>
-
-<footer>
-    © 2025 • Echan Hardinata
-</footer>
-<script>
-async function loadList(){
-  const res = await fetch('/api/articles');
-  const arr = await res.json();
-  const container = document.querySelector('.card-container');
-  container.innerHTML = '';
-  arr.forEach(a => {
-    const el = document.createElement('a');
-    el.className = 'card';
-    el.href = `article.html?id=${a.id}`;
-    el.innerHTML = `
-      <img src="${a.thumbnail || 'img/placeholder.jpg'}">
-      <h3>${a.title}</h3>
-      <p>${(a.content||'').replace(/<[^>]*>?/gm,'').slice(0,120)}...</p>
-    `;
-    container.appendChild(el);
-  });
-}
-loadList();
-</script>
-
-<script src="script.js"></script>
 </body>
 </html>
