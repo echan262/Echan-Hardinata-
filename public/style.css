@@ -1,74 +1,96 @@
-/* LOGIN SCREEN */
-#login-screen {
-    position: absolute;
-    inset: 0;
-    background: rgba(0,0,0,0.7);
+body {
+    font-family: "Poppins", sans-serif;
+    background: #0d0d0d;
     display: flex;
     justify-content: center;
     align-items: center;
-    backdrop-filter: blur(8px);
+    height: 100vh;
+    margin: 0;
 }
 
-.login-box {
-    background: rgba(255,255,255,0.1);
-    padding: 25px;
-    width: 300px;
-    border-radius: 15px;
-    text-align: center;
-    color: white;
-    backdrop-filter: blur(12px);
-    box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+.chat-container {
+    width: 380px;
+    background: #1b1b1b;
+    border-radius: 14px;
+    padding: 20px;
+    box-shadow: 0 0 25px rgba(0, 150, 255, 0.3);
 }
 
-.login-box input {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border-radius: 8px;
-    border: none;
-    outline: none;
-}
-
-.login-box button {
-    width: 100%;
-    padding: 10px;
-    border-radius: 8px;
-    border: none;
-    background: #0af;
-    color: #000;
-    font-weight: 600;
-    cursor: pointer;
-}
-
-/* CHAT AVATAR BUBBLE */
-.msg-block {
+header {
     display: flex;
-    gap: 10px;
-    align-items: flex-start;
-    animation: fadeIn 0.3s ease;
-}
-
-.msg-block.me {
-    flex-direction: row-reverse;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 15px;
 }
 
 .avatar {
-    width: 36px;
-    height: 36px;
+    width: 45px;
+    height: 45px;
     border-radius: 50%;
+    border: 2px solid #0af;
 }
 
-/* typing */
+#messages {
+    height: 300px;
+    overflow-y: auto;
+    background: #111;
+    padding: 12px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.message {
+    background: #222;
+    padding: 8px 12px;
+    margin: 8px 0;
+    width: fit-content;
+    max-width: 75%;
+    border-radius: 10px;
+    animation: fadeIn 0.3s ease;
+}
+
+.message.you {
+    background: #0066ff;
+    margin-left: auto;
+    border-radius: 10px 10px 0 10px;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
 #typing {
     height: 20px;
     font-size: 14px;
-    color: #ccc;
-    margin: 5px;
-    font-style: italic;
+    color: #0af;
+    margin-bottom: 4px;
 }
 
-/* bubble animation */
-@keyframes fadeIn {
-    from {opacity: 0; transform: translateY(8px);}
-    to {opacity: 1; transform: translateY(0);}
+.input-area {
+    display: flex;
+    gap: 10px;
+}
+
+input {
+    flex: 1;
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    background: #222;
+    color: white;
+}
+
+button {
+    padding: 10px 15px;
+    border-radius: 8px;
+    background: #0af;
+    color: #000;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #08c;
 }

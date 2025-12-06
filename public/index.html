@@ -3,38 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Real-Time Chat</title>
+    <title>Echan Hardinata • Tech Blog & Projects</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- LOGIN SCREEN -->
-    <div id="login-screen">
-        <div class="login-box">
-            <h2>Enter your username</h2>
-            <input id="usernameInput" type="text" placeholder="Your name">
-            <button onclick="startChat()">Join Chat</button>
-        </div>
-    </div>
+<header class="nav">
+    <h1>⚡ Echan Hardinata</h1>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="#projects">Projects</a>
+        <a href="#articles">Articles</a>
+    </nav>
+</header>
 
-    <!-- CHAT SCREEN -->
-    <div class="container" id="chat-screen" style="display:none;">
-        <header>
-            <h2>💬 Real-Time Chat</h2>
-        </header>
+<section class="hero">
+    <h2>Welcome to My Tech Blog</h2>
+    <p>Arduino • Electronics • Programming • IoT • Tutorials</p>
+</section>
 
-        <div id="messages"></div>
+<h2 class="section-title" id="articles">Latest Articles</h2>
 
-        <div id="typing"></div>
+<div class="card-container">
 
-        <div class="input-area">
-            <input id="msg" type="text" placeholder="Type a message..." oninput="typing()">
-            <button onclick="sendMsg()">Send</button>
-        </div>
-    </div>
+    <a class="card" href="article.html?id=arduino-ultrasonic">
+        <img src="img/thumbnail1.jpg">
+        <h3>Arduino Ultrasonic: Cara Kerja & Contoh Project</h3>
+        <p>Belajar membuat sensor jarak otomatis dengan HC-SR04.</p>
+    </a>
 
-    <script src="/socket.io/socket.io.js"></script>
-    <script src="script.js"></script>
+    <a class="card" href="article.html?id=rfid-mfrc522">
+        <img src="img/thumbnail2.jpg">
+        <h3>RFID MFRC522: Menambah Fitur Magic Card</h3>
+        <p>Tutorial lengkap cloning, dump, dan write sektor.</p>
+    </a>
 
+</div>
+
+<h2 class="section-title" id="projects">Featured Projects</h2>
+
+<div class="card-container">
+
+    <a class="card" href="article.html?id=automatic-irrigation">
+        <img src="img/thumbnail3.jpg">
+        <h3>Automatic Watering System</h3>
+        <p>Proyek IoT penyiraman & pemupukan otomatis.</p>
+    </a>
+
+    <a class="card" href="article.html?id=nfc-pn532">
+        <img src="img/thumbnail4.jpg">
+        <h3>Simulasi NFC PN532</h3>
+        <p>Simulasi kartu, SID, dump, dan cloning.</p>
+    </a>
+
+</div>
+
+<footer>
+    © 2025 • Echan Hardinata
+</footer>
+
+<script src="script.js"></script>
 </body>
 </html>
