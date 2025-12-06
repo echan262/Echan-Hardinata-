@@ -2,14 +2,14 @@
 
 /* --- Root Variables --- */
 :root {
-  --primary: #6366f1;
-  --bg-light: #253b52;
-  --bg-dark: #111827;
+  --primary: #1e1f4e;
+  --bg-light: #24486e;
+  --bg-dark: #131c2c;
   --text-light: #ffffff;
   --text-dark: #ffffff;
-  --border-light: #ffffff;
-  --border-dark: #374151;
-  --transition-speed: 0.3s;
+  --border-light: #8091b6;
+  --border-dark: #5280c9;
+  --transition-speed: 0.5s;
 }
 
 body {
@@ -62,7 +62,7 @@ body.dark header {
 
 /* --- Cards --- */
 .card {
-  background-color: #fff;
+  background-color: #726cc9;
   border-radius: 1rem;
   overflow: hidden;
   box-shadow: 0 4px 6px rgba(0,0,0,0.1);
@@ -89,10 +89,10 @@ body.dark .card {
 .card p {
   font-size: 0.95rem;
   margin: 0 1rem 1rem;
-  color: #475569;
+  color: #fcfeff;
 }
 body.dark .card p {
-  color: #cbd5e1;
+  color: #eff2f5;
 }
 
 /* --- Inputs & Buttons --- */

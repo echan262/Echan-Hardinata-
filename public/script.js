@@ -17,8 +17,10 @@ function addProject({id, title, excerpt, img, tags=[]}){
 // --------- Sample content ---------
 addArticle({id:'arduino-ultrasonic', title:'Arduino Ultrasonic', excerpt:'Belajar membuat sensor jarak otomatis dengan HC-SR04.', img:'img/thumbnail1.jpg', tags:['Arduino','Sensor']});
 addArticle({id:'rfid-mfrc522', title:'RFID MFRC522', excerpt:'Tutorial cloning, dump, dan write sektor.', img:'img/thumbnail2.jpg', tags:['RFID','Security']});
+addArticle({id:'pencacah-arduino', title:'pencacah berbasis arduino', excerpt:'IoT penyiraman otomatis & pemupukan.', img:'img/thumbnaix3.jpg'});
 
 addProject({id:'auto-water', title:'Automatic Watering System', excerpt:'IoT penyiraman otomatis & pemupukan.', img:'img/thumbnail3.jpg'});
+
 
 // --------- Create Card Element ---------
 function createCard(item){
