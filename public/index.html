@@ -1,64 +1,129 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Echan Hardinata • Tech Blog & Projects</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Echan Hardinata • Tech Blog & Projects</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="style.css">
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
 
-  <!-- Tailwind CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
+<style>
+  /* --- SLOGAN CONFIG --- */
+  :root {
+    --slogan-size-1: 3rem;   /* Ukuran baris 1 */
+    --slogan-size-2: 1rem;  /* Ukuran baris 2 */
 
-  <!-- Custom Modular CSS -->
-  <link rel="stylesheet" href="style.css">
+    --slogan-glow: 0 0 12px #6366f1;
+  }
+
+  .slogan-box {
+    text-align: center;
+    margin-bottom: 18px;
+    line-height: 1.35;
+  }
+
+  .slogan-line-1 {
+    font-size: var(--slogan-size-1);
+    font-weight: 700;
+    color: #a5b4fc;
+    text-shadow: var(--slogan-glow);
+  }
+
+  .slogan-line-2 {
+    font-size: var(--slogan-size-2);
+    font-weight: 700;
+    color: #c7d2fe;
+    text-shadow: var(--slogan-glow);
+  }
+</style>
+
 </head>
-<body class="bg-light text-dark transition-colors duration-300">
 
-  <!-- Header -->
-  <header id="header" class="sticky top-0 z-30 bg-white dark:bg-gray-900 border-b border-light dark:border-dark shadow-md">
-    <div class="max-w-5xl mx-auto px-4 py-3 flex justify-between items-center">
-      <div class="flex items-center gap-3">
-        <a href="#" class="flex items-center gap-3">
-          <div class="logo bg-gradient-to-br from-indigo-500 to-pink-500 text-white font-bold rounded-full w-10 h-10 flex items-center justify-center">EH</div>
-          <span class="hidden sm:block font-semibold text-lg">Echan Hardinata</span>
-        </a>
-      </div>
+<body class="bg-gray-900 text-gray-100 transition-colors duration-300">
 
-      <nav class="hidden md:flex gap-4">
-        <a href="#" class="nav-link">Home</a>
-        <a href="#projects" class="nav-link">Projects</a>
-        <a href="#articles" class="nav-link">Articles</a>
-      </nav>
+<header class="sticky top-0 z-30 bg-gray-900 border-b border-gray-700 shadow-md">
+  <div class="max-w-5xl mx-auto px-4 py-3 flex justify-between items-center">
 
-      <div class="flex items-center gap-3">
-        <input id="search" type="search" placeholder="Search..." class="search-input hidden sm:block">
-        <button id="themeToggle" class="btn-theme">🌙</button>
-      </div>
+    <!-- ======================= -->
+    <!--   LOGO + SITE NAME      -->
+    <!-- ======================= -->
+    <a href="#" class="font-semibold text-2xl text-indigo-400 flex items-center gap-3">
+  <i data-lucide="circuit-board" class="w-7 h-7 text-indigo-400"></i>
+  Echan Hardinata
+</a>
+
+    <nav class="hidden md:flex gap-4">
+      <a href="#" class="nav-link">Home</a>
+      <a href="#projects" class="nav-link">Projects</a>
+      <a href="#articles" class="nav-link">Articles</a>
+    </nav>
+
+    <div class="flex items-center gap-3">
+      <input id="search" type="search"
+             placeholder="Search..."
+             class="search-input hidden sm:block px-2 py-1 rounded bg-gray-800 text-gray-100">
+      <button id="themeToggle" class="btn-theme">🌙</button>
     </div>
-  </header>
+  </div>
+</header>
 
-  <!-- Hero Section -->
-  <section class="hero max-w-5xl mx-auto px-4 py-8 text-center">
-    <h1 class="text-3xl md:text-4xl font-extrabold mb-2">Selamat datang di Tech Blog & Projects</h1>
-    <p class="text-slate-600 dark:text-slate-300 mb-4">Arduino • Electronics • Programming • IoT • Tutorials</p>
+<main class="max-w-5xl mx-auto px-4 py-8">
+
+  <section id="articles">
+
+    <div class="slogan-box">
+      <p class="slogan-line-1">Selamat datang di Tech Blog & Projects</p>
+      <p class="slogan-line-2">Arduino • Electronics • Programming • IoT • Tutorials</p>
+    </div>
+
+    <h2 class="text-2xl font-bold mb-4">Proyek Terbaru</h2>
+    <div id="cards" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+
   </section>
 
-  <!-- Articles Section -->
-  <section id="articles" class="max-w-5xl mx-auto px-4 py-8">
-    <h2 class="section-title">Artikel Terbaru</h2>
-    <div id="cards" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-4"></div>
+  <section id="projects" class="mt-12">
+    <h2 class="text-2xl font-bold mb-4">Proyek Unggulan</h2>
+    <div id="projectsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
   </section>
 
-  <!-- Projects Section -->
-  <section id="projects" class="max-w-5xl mx-auto px-4 py-8">
-    <h2 class="section-title">Proyek Unggulan</h2>
-    <div id="projectsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-4"></div>
-  </section>
+</main>
 
-  <!-- Footer -->
-  <footer class="text-center py-6 text-sm text-slate-500 dark:text-slate-400">© 2025 • Echan Hardinata</footer>
+<footer class="text-center py-6 text-gray-400">
 
-  <!-- Script -->
-  <script src="script.js"></script>
+  <div class="flex justify-center gap-6 mb-3">
 
+    <a href="https://www.instagram.com/jacksonnavile_35/" target="_blank" 
+       class="text-indigo-400 text-xl neon-soc hover:text-indigo-300">
+      <i class="fab fa-instagram"></i>
+    </a>
+
+    <a href="https://github.com/echan262" target="_blank" 
+       class="text-indigo-400 text-xl neon-soc hover:text-indigo-300">
+      <i class="fab fa-github"></i>
+    </a>
+
+    <a href="https://www.youtube.com/@echanhardinata" target="_blank" 
+       class="text-indigo-400 text-xl neon-soc hover:text-indigo-300">
+      <i class="fab fa-youtube"></i>
+    </a>
+
+    <a href="https://facebook.com/" target="_blank" 
+       class="text-indigo-400 text-xl neon-soc hover:text-indigo-300">
+      <i class="fab fa-facebook"></i>
+    </a>
+
+  </div>
+
+  &copy; 2025 Echan Hardinata • All Rights Reserved
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/js/all.min.js"></script>
+
+<script>
+  lucide.createIcons();
+</script>
+
+<script src="script.js"></script>
 </body>
 </html>

@@ -1,17 +1,19 @@
-/* style.css - Modular CSS for Echan Portfolio */
+/* style.css - Echan Portfolio Cyberpunk Neon FINAL VINAL */
 
 /* --- Root Variables --- */
 :root {
-  --primary: #1e1f4e;
-  --bg-light: #24486e;
+  --primary: #6366f1;        /* neon biru */
+  --secondary: #d946ef;      /* neon ungu/pink */
+  --bg-light: #111827;
   --bg-dark: #131c2c;
   --text-light: #ffffff;
-  --text-dark: #ffffff;
-  --border-light: #8091b6;
+  --text-dark: #f3f4f6;
+  --border-light: var(--primary);
   --border-dark: #5280c9;
   --transition-speed: 0.5s;
 }
 
+/* --- Body --- */
 body {
   background-color: var(--bg-light);
   color: var(--text-dark);
@@ -25,22 +27,39 @@ body.dark {
 
 /* --- Header --- */
 header {
-  padding: 0.75rem 1rem;
-  border-bottom: 1px solid var(--border-light);
   background-color: inherit;
-  z-index: 30;
+  border-bottom: 1px solid var(--border-light);
   transition: background-color var(--transition-speed), border-color var(--transition-speed);
 }
 body.dark header {
   border-color: var(--border-dark);
 }
+
+/* --- Nav Link Neon Hover Dramatis --- */
 .nav-link {
+  position: relative;
   font-weight: 500;
   padding: 0.5rem;
-  transition: color var(--transition-speed);
+  color: inherit;
+  transition: all 0.3s ease;
+}
+.nav-link::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  left: 0;
+  bottom: -2px;
+  background: var(--primary);
+  box-shadow: 0 0 5px var(--primary), 0 0 10px var(--secondary);
+  transition: width 0.3s ease;
+}
+.nav-link:hover::after {
+  width: 100%;
 }
 .nav-link:hover {
   color: var(--primary);
+  text-shadow: 0 0 5px var(--primary), 0 0 10px var(--secondary);
 }
 
 /* --- Hero Section --- */
@@ -60,68 +79,141 @@ body.dark header {
   text-align: center;
 }
 
-/* --- Cards --- */
-.card {
-  background-color: #726cc9;
+/* --- Neon Card Grid --- */
+#cards, #projectsGrid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+/* --- Neon Card Cyberpunk --- */
+.neon-card {
+  background-color: var(--bg-light);
+  border: 2px solid var(--primary);
   border-radius: 1rem;
   overflow: hidden;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
   display: flex;
   flex-direction: column;
+  position: relative;
+  transition: all 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 
+    0 0 3px var(--primary),
+    0 0 6px var(--secondary);
 }
-body.dark .card {
-  background-color: #1f2937;
+
+/* Hover: Timbul + Inner & Outer Glow + Scale */
+.neon-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow:
+    inset 0 0 15px var(--secondary),
+    0 8px 20px rgba(99,102,241,0.3),
+    0 0 15px var(--primary),
+    0 0 30px var(--secondary),
+    0 0 50px rgba(99,102,241,0.5),
+    0 0 80px rgba(99,102,241,0.3);
 }
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+
+/* Scan Line Multi-Color */
+.neon-card::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  background: linear-gradient(
+    0deg,
+    rgba(99,102,241,0) 0%,
+    rgba(99,102,241,0.1) 20%,
+    rgba(217,70,239,0.1) 50%,
+    rgba(99,102,241,0.1) 80%,
+    rgba(99,102,241,0) 100%
+  );
+  pointer-events: none;
+  transform: skewY(-20deg);
+  animation: scanline-multi 2s linear infinite;
 }
-.card img {
+@keyframes scanline-multi {
+  0% { top: -50%; }
+  100% { top: 150%; }
+}
+
+/* Neon card content */
+.neon-card img {
   width: 100%;
   height: 180px;
   object-fit: cover;
 }
-.card h3 {
+.neon-card h3 {
   font-size: 1.25rem;
   margin: 0.75rem 1rem 0.25rem;
+  color: var(--text-light);
+  text-shadow: 0 0 3px var(--primary), 0 0 6px var(--secondary);
 }
-.card p {
+.neon-card p {
   font-size: 0.95rem;
   margin: 0 1rem 1rem;
-  color: #fcfeff;
-}
-body.dark .card p {
-  color: #eff2f5;
+  color: #d1d5db;
 }
 
-/* --- Inputs & Buttons --- */
+/* --- Neon Button Dramatis --- */
+.neon-btn {
+  position: relative;
+  cursor: pointer;
+  color: #fff;
+  background: var(--bg-light);
+  border: 2px solid var(--primary);
+  box-shadow: 0 0 10px var(--primary), 0 0 20px var(--secondary);
+  transition: all 0.3s ease;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+.neon-btn::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, var(--primary) 0%, var(--secondary) 50%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.neon-btn:hover::before {
+  opacity: 0.3;
+}
+.neon-btn:hover {
+  background: var(--primary);
+  box-shadow: 
+    inset 0 0 12px var(--secondary),
+    0 0 20px var(--primary),
+    0 0 40px var(--secondary);
+  transform: translateY(-2px);
+  text-shadow: 0 0 5px var(--primary), 0 0 10px var(--secondary);
+}
+
+/* --- Inputs --- */
 .search-input {
   padding: 0.5rem 1rem;
   border-radius: 9999px;
   border: 1px solid var(--border-light);
   transition: border-color var(--transition-speed), background-color var(--transition-speed);
+  background-color: #1f2937;
+  color: var(--text-light);
 }
 body.dark .search-input {
   border-color: var(--border-dark);
   background-color: #374151;
   color: var(--text-light);
 }
-.btn-theme {
-  cursor: pointer;
-  font-size: 1.25rem;
-  background: none;
-  border: none;
-  transition: color var(--transition-speed);
-}
 
 /* --- Animations --- */
-.fade-in {
+.fade-slide {
   opacity: 0;
-  transform: translateY(10px);
-  transition: opacity 0.5s ease, transform 0.5s ease;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
-.fade-in.is-visible {
+.fade-slide.visible {
   opacity: 1;
   transform: translateY(0);
 }
@@ -132,4 +224,18 @@ footer {
   padding: 2rem 1rem;
   font-size: 0.875rem;
   color: #94a3b8;
+}
+footer a.neon-link:hover {
+  text-shadow: 0 0 5px var(--primary), 0 0 10px var(--secondary);
+  color: #fff;
+}
+
+.neon-soc {
+  transition: 0.25s ease;
+  text-shadow: 0 0 6px #6366f1;
+}
+
+.neon-soc:hover {
+  text-shadow: 0 0 12px #818cf8, 0 0 22px #6366f1;
+  transform: translateY(-2px);
 }

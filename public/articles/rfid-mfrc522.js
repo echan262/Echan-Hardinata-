@@ -1,14 +1,15 @@
-const ARTICLE = {
-    id: "rfid-mfrc522",
-    title: "RFID MFRC522: Menambah Fitur Magic Card",
-    tags: ["Arduino","RFID","MFRC522"],
-    thumbnail: "img/thumbnail2.jpg",
-    content: "<p>Tutorial lengkap cloning, dump, dan write sektor.</p>",
+ARTICLE = {
+    id: "rfid-mfrc552",
+    title: "Arduino Ultrasonic: Cara Kerja & Contoh Project",
+    tags: ["Arduino","Sensor","HC-SR04"],
+    thumbnail: "img/thumbnail1.jpg",
+    gallery: ["img/ultrasonic1.jpg","img/ultrasonic2.jpg","img/ultrasonic3.jpg"],
+    content: "<p>Belajar membuat sensor jarak otomatis dengan HC-SR04 menggunakan Arduino.</p>",
     sub: [
-        { subtitle: "Pengantar RFID", body: "<p>RFID MFRC522 adalah modul populer untuk membaca kartu RFID.</p>" },
-        { subtitle: "Fitur Magic Card", body: "<p>Dengan Magic Card, kita bisa melakukan full clone dan write sektor.</p>" }
+        { subtitle: "Pengantar", body: "<p>Sensor ultrasonic HC-SR04 digunakan untuk mengukur jarak.</p>" },
+        { subtitle: "Contoh Project", body: "<p>Membuat robot obstacle avoidance menggunakan HC-SR04 dan Arduino.</p>" }
     ],
     files: [
-        { name: "Code RFID.zip", url: "files/rfid-mfrc522.zip" }
+        { name: "Code Arduino.zip", url: "files/arduino-ultrasonic.zip" }
     ]
 };
