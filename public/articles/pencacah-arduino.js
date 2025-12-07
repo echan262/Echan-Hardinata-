@@ -1,9 +1,9 @@
 ARTICLE = {
     id: "pencacah-arduino",
-    title: "Arduino Ultrasonic: Cara Kerja & Contoh Project",
+    title: "pencacah-arduino",
     tags: ["Arduino","Sensor","HC-SR04"],
     thumbnail: "img/thumbnail1.jpg",
-    gallery: ["img/ultrasonic1.jpg","img/ultrasonic2.jpg","img/ultrasonic3.jpg"],
+    gallery: ["img/ultrasoni.jpg","img/ultrason.jpg","img/ultrason.jpg"],
     content: "<p>Belajar membuat sensor jarak otomatis dengan HC-SR04 menggunakan Arduino.</p>",
     sub: [
         { subtitle: "Pengantar", body: "<p>Sensor ultrasonic HC-SR04 digunakan untuk mengukur jarak.</p>" },
